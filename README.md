@@ -5,6 +5,7 @@ tests have been written in python and tested .
 Later execution metrics have also been added for more better understanding
 
 ## so this is how work test happens in sequence:
+```
 Start Test
 Open Website
 Wait for Page to Load
@@ -20,3 +21,4 @@ Open Cart
 Remove Item
 Close Browser
 End Test
+```
