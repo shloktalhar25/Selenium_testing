@@ -1,0 +1,75 @@
+# old code ;
+import worker 
+
+# pyrefly: ignore [missing-import]
+from selenium.webdriver.common.by import By
+# pyrefly: ignore [missing-import]
+from selenium.webdriver.support.ui import WebDriverWait
+# pyrefly: ignore [missing-import]
+from selenium.webdriver.support import expected_conditions as EC
+
+# pyrefly: ignore [missing-import]
+from selenium import webdriver
+# pyrefly: ignore [missing-import]
+from selenium.webdriver.firefox.options import Options
+
+
+# browser config
+options = Options()
+options.add_argument("-headless")
+
+driver = webdriver.Firefox(options=options)
+
+# Wait For Username Field
+driver.get("https://www.saucedemo.com")
+
+
+wait = WebDriverWait(driver, 10)
+
+username = wait.until(
+    EC.presence_of_element_located(
+        (By.ID, "user-name")
+    )
+)
+
+# Locate Password Field
+password = driver.find_element(
+    By.ID,
+    "password"
+)
+
+# Enter Credentials
+username.send_keys("standard_user")
+
+password.send_keys("secret_sauce")
+
+# locate Login Button
+login_button = driver.find_element(
+    By.ID,
+    "login-button"
+)
+
+# Click Login Button
+login_button.click()
+
+# verify successfull login
+wait.until(
+    EC.presence_of_element_located(
+        (By.ID, "inventory_container")
+    )
+)
+
+# Print sucess message
+print("LOGIN SUCCESSFUL")
+
+
+print(driver.title)
+
+driver.quit()
+
+
+
+
+
+
+
